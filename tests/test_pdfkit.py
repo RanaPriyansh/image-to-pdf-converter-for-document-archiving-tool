@@ -27,7 +27,7 @@ class TestPDFMerger:
     """Test PDF merging."""
     
     def test_merge_basic(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFMerger
+        from pdfkit import PDFMerger
         
         with tempfile.TemporaryDirectory() as tmpdir:
             # Create test PDFs
@@ -41,7 +41,7 @@ class TestPDFMerger:
             assert Path(result).stat().st_size > 0
     
     def test_merge_single(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFMerger
+        from pdfkit import PDFMerger
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf1 = create_test_pdf(f"{tmpdir}/single.pdf", 1)
@@ -55,7 +55,7 @@ class TestPDFSplitter:
     """Test PDF splitting."""
     
     def test_split_by_ranges(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFSplitter
+        from pdfkit import PDFSplitter
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 5)
@@ -71,7 +71,7 @@ class TestPDFSplitter:
             assert all(Path(p).exists() for p in outputs)
     
     def test_split_every_n(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFSplitter
+        from pdfkit import PDFSplitter
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 6)
@@ -82,7 +82,7 @@ class TestPDFSplitter:
             assert len(outputs) == 3  # 6 pages / 2 = 3 files
     
     def test_split_single_pages(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFSplitter
+        from pdfkit import PDFSplitter
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 3)
@@ -97,7 +97,7 @@ class TestPDFExtractor:
     """Test PDF extraction."""
     
     def test_extract_pages(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFExtractor
+        from pdfkit import PDFExtractor
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 5)
@@ -109,7 +109,7 @@ class TestPDFExtractor:
             assert Path(result).exists()
     
     def test_get_text(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFExtractor
+        from pdfkit import PDFExtractor
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 2)
@@ -125,7 +125,7 @@ class TestPDFCompressor:
     """Test PDF compression."""
     
     def test_compress(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFCompressor
+        from pdfkit import PDFCompressor
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 5)
@@ -140,7 +140,7 @@ class TestPDFRotator:
     """Test PDF rotation."""
     
     def test_rotate_all(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFRotator
+        from pdfkit import PDFRotator
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 3)
@@ -151,7 +151,7 @@ class TestPDFRotator:
             assert Path(result).exists()
     
     def test_rotate_specific_pages(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFRotator
+        from pdfkit import PDFRotator
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 3)
@@ -166,7 +166,7 @@ class TestPDFInfo:
     """Test PDF info."""
     
     def test_get_info(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFInfo
+        from pdfkit import PDFInfo
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 3)
@@ -178,7 +178,7 @@ class TestPDFInfo:
             assert "encrypted" in info
     
     def test_format_info(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFInfo
+        from pdfkit import PDFInfo
         
         info = {
             "filename": "test.pdf",
@@ -197,7 +197,7 @@ class TestPDFEncryptor:
     """Test PDF encryption."""
     
     def test_encrypt_decrypt(self):
-        from image-to-pdf-converter-for-document-archiving-tool import PDFEncryptor
+        from pdfkit import PDFEncryptor
         
         with tempfile.TemporaryDirectory() as tmpdir:
             pdf = create_test_pdf(f"{tmpdir}/input.pdf", 2)
@@ -217,7 +217,7 @@ class TestImageToPDF:
     """Test image to PDF conversion."""
     
     def test_convert(self):
-        from image-to-pdf-converter-for-document-archiving-tool import ImageToPDF
+        from pdfkit import ImageToPDF
         from PIL import Image
         
         with tempfile.TemporaryDirectory() as tmpdir:
